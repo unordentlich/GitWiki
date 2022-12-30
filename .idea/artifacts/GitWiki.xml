@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="GitWiki">
+    <output-path>$PROJECT_DIR$/../../../Deployments/CubeLife 1.16.5/plugins</output-path>
+    <root id="archive" name="GitWiki.jar">
+      <element id="module-output" name="GitWiki" />
+    </root>
+  </artifact>
+</component>

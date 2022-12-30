@@ -1,0 +1,5 @@
+de\unordentlich\gitwiki\GitWiki.class
+de\unordentlich\gitwiki\utils\ConfigHandler.class
+de\unordentlich\gitwiki\utils\objects\TopicView.class
+de\unordentlich\gitwiki\commands\Wiki.class
+de\unordentlich\gitwiki\utils\Variables.class

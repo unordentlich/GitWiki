@@ -1,0 +1,13 @@
+name: GitWiki
+version: '${project.version}'
+main: de.unordentlich.gitwiki.GitWiki
+prefix: GitWiki
+authors: [ unordentlich ]
+description: Bring all the knowledge about your server close to your users and let them help you to constantly improve it, through GitHub-synced support documentation!
+commands:
+  wiki:
+    description: Open the wiki
+    aliases: [ docs, documentation, faq ]
+    usage: /wiki
+    permission-message: You don't have permission to use this command!
+    default: true
