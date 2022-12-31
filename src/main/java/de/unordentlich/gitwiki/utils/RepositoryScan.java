@@ -13,11 +13,11 @@ import org.bukkit.Bukkit;
 public class RepositoryScan {
 
     public static void analyze(String path) throws UnirestException {
-        HttpResponse<String> response = Unirest.get("https://api.github.com/repos/" + Variables.owner + "/" + Variables.repo + "/contents/" + path)
+        HttpResponse<String> response = Unirest.get("https://api.github.com/repos/" + Constants.owner + "/" + Constants.repo + "/contents/" + path)
                 .asString();
         String json = response.getBody();
         JsonArray files = new Gson().fromJson(json, JsonArray.class);
-        Directory currentDirectory = Variables.getRepository();
+        Directory currentDirectory = Constants.getRepository();
         for (int i = 0; i < files.size(); i++) {
             JsonObject file = files.get(i).getAsJsonObject();
             String name = file.get("name").getAsString();
@@ -56,7 +56,7 @@ public class RepositoryScan {
     }
 
     public static void analyze(String path, Directory current) throws UnirestException {
-        HttpResponse<String> response = Unirest.get("https://api.github.com/repos/" + Variables.owner + "/" + Variables.repo + "/contents/" + path)
+        HttpResponse<String> response = Unirest.get("https://api.github.com/repos/" + Constants.owner + "/" + Constants.repo + "/contents/" + path)
                 .asString();
         String json = response.getBody();
         JsonArray files = new Gson().fromJson(json, JsonArray.class);

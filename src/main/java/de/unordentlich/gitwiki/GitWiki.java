@@ -2,8 +2,8 @@ package de.unordentlich.gitwiki;
 
 import de.unordentlich.gitwiki.commands.Wiki;
 import de.unordentlich.gitwiki.utils.ConfigHandler;
+import de.unordentlich.gitwiki.utils.Constants;
 import de.unordentlich.gitwiki.utils.RepositoryScan;
-import de.unordentlich.gitwiki.utils.Variables;
 import de.unordentlich.gitwiki.utils.objects.TopicView;
 import kong.unirest.UnirestException;
 import org.bukkit.Bukkit;
@@ -34,14 +34,14 @@ public final class GitWiki extends JavaPlugin {
     }
 
     private void initialize() {
-        Variables.owner = configHandler.config.getString("github.user");
-        Variables.repo = configHandler.config.getString("github.repository");
-        Variables.permissionRequired = configHandler.config.getBoolean("permissionRequired");
+        Constants.owner = configHandler.config.getString("github.user");
+        Constants.repo = configHandler.config.getString("github.repository");
+        Constants.permissionRequired = configHandler.config.getBoolean("permissionRequired");
 
         try {
-            Variables.viewType = TopicView.valueOf(configHandler.config.getString("printType"));
+            Constants.viewType = TopicView.valueOf(configHandler.config.getString("printType"));
         } catch (IllegalArgumentException e) {
-            Variables.viewType = TopicView.CHAT;
+            Constants.viewType = TopicView.CHAT;
             Bukkit.getConsoleSender().sendMessage("§c§lGitWiki §7§l> §c§l" + configHandler.config.getString("printType") + "§7§l is not a valid print type! (BOOK, CHAT)");
         }
 

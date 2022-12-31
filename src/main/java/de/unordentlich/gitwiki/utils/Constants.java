@@ -3,7 +3,7 @@ package de.unordentlich.gitwiki.utils;
 import de.unordentlich.gitwiki.utils.objects.Directory;
 import de.unordentlich.gitwiki.utils.objects.TopicView;
 
-public class Variables {
+public class Constants {
 
     public static String repo, owner;
     public static Directory repository = new Directory("*", "/");

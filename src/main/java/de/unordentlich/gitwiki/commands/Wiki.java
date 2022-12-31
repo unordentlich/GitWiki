@@ -1,6 +1,6 @@
 package de.unordentlich.gitwiki.commands;
 
-import de.unordentlich.gitwiki.utils.Variables;
+import de.unordentlich.gitwiki.utils.Constants;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,12 +23,12 @@ public class Wiki implements CommandExecutor {
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!(sender instanceof Player)) return false;
-        if(Variables.permissionRequired && !sender.hasPermission("wiki.view")) return false;
+        if (!(sender instanceof Player)) return false;
+        if (Constants.permissionRequired && !sender.hasPermission("wiki.view")) return false;
         Player p = (Player) sender;
 
         if(args.length == 0) {
-            Variables.getRepository().print(p);
+            Constants.getRepository().print(p);
         } else {
 
         }

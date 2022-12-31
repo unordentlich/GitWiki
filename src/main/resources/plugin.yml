@@ -3,6 +3,7 @@ version: '${project.version}'
 main: de.unordentlich.gitwiki.GitWiki
 prefix: GitWiki
 authors: [ unordentlich ]
+api-version: 1.13
 description: Bring all the knowledge about your server close to your users and let them help you to constantly improve it, through GitHub-synced support documentation!
 commands:
   wiki:

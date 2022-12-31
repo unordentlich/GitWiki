@@ -1,11 +1,12 @@
 package de.unordentlich.gitwiki.utils.objects;
 
-import de.unordentlich.gitwiki.utils.Variables;
+import de.unordentlich.gitwiki.utils.Constants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class Directory {
     }
 
     public static Directory getByPath(String path) {
-        Directory directory = Variables.getRepository();
+        Directory directory = Constants.getRepository();
         String targetDirectory = path.split("/")[path.length() - 1];
         for (int i = 0; i < path.split("/").length; i++) {
             String currentDirectory = path.split("/")[i];
@@ -49,7 +50,7 @@ public class Directory {
     }
 
     public Directory getParent() {
-        return (parent != null) ? parent : Variables.getRepository();
+        return (parent != null) ? parent : Constants.getRepository();
     }
 
     public Directory add(Directory directory) {
@@ -65,24 +66,39 @@ public class Directory {
     public Inventory print(Player p) {
         Inventory inventory = Bukkit.createInventory(null, 9 * 4, "§k⁂§f §eHelp§6Center");
 
+        ItemStack pane = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
+        ItemMeta paneMeta = pane.getItemMeta();
+        paneMeta.setDisplayName("§f");
+        paneMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ATTRIBUTES);
+        pane.setItemMeta(paneMeta);
+
         for (int i = 0; i < inventory.getSize(); i++) {
             if (i < 10) {
-                inventory.setItem(i, new ItemStack(Material.STRING, 1));
+                inventory.setItem(i, pane);
             } else if (i > 16 && i < 19) {
-                inventory.setItem(i, new ItemStack(Material.STRING, 1));
+                inventory.setItem(i, pane);
             } else if (i > 25 && i < 28) {
-                inventory.setItem(i, new ItemStack(Material.STRING, 1));
+                inventory.setItem(i, pane);
             } else if (i > 27) {
-                inventory.setItem(i, new ItemStack(Material.STRING, 1));
+                inventory.setItem(i, pane);
             }
         }
 
         for (Directory directory : directories) {
-            inventory.addItem(new ItemStack(Material.BOOKSHELF, 1));
+            ItemStack item = new ItemStack(Material.BOOKSHELF, 1);
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName("§7◌ §6" + directory.getName());
+            item.setItemMeta(meta);
+            inventory.addItem(item);
         }
 
         for (File file : files) {
-            inventory.addItem(new ItemStack(Material.PAPER, 1));
+            ItemStack item = new ItemStack(Material.PAPER, 1);
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName("§e" + file.getName());
+            //TODO Description from Readme
+            item.setItemMeta(meta);
+            inventory.addItem(item);
         }
 
         p.openInventory(inventory);
@@ -97,4 +113,6 @@ public class Directory {
         }
         return null;
     }
+
+
 }
